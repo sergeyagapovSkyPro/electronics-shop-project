@@ -1,6 +1,7 @@
 import csv
 
 
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -20,7 +21,6 @@ class Item:
         self.price = price
         self.quantity = quantity
         self.all.append(self)
-
 
     def calculate_total_price(self) -> float:
         """
@@ -53,7 +53,7 @@ class Item:
     def instantiate_from_csv(cls, csv_file):
         """добовление экземпляров класса из csv файла"""
         cls.all = []
-        with open(csv_file) as file:
+        with open(csv_file, newline='', encoding="windows-1251") as file:
             data = csv.DictReader(file)
             for row in data:
                 cls(str(row['name']), float(row['price']), int(row['quantity']))
