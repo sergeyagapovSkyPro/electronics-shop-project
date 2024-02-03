@@ -1,7 +1,6 @@
 import csv
 
 
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -21,6 +20,14 @@ class Item:
         self.price = price
         self.quantity = quantity
         self.all.append(self)
+
+    def __repr__(self):
+        """Вывод информации об откладки для разрабочика"""
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        """Вывод инфонрмации для пользователя"""
+        return f'{self.name}'
 
     def calculate_total_price(self) -> float:
         """
@@ -63,3 +70,4 @@ class Item:
         """возвращает число из числа - строки"""
         number = float(str_number)
         return int(number)
+
