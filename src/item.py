@@ -29,6 +29,10 @@ class Item:
         """Вывод инфонрмации для пользователя"""
         return f'{self.name}'
 
+    def __add__(self, other):
+        """Функция складывает кол-во товаров"""
+        return self.quantity + other.quantity
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -50,7 +54,7 @@ class Item:
 
     @name.setter
     def name(self, name):
-        """функция проверяет длинну наименования товаров не более 10 символов"""
+        """Функция проверяет длинну наименования товаров не более 10 символов"""
         if len(name) > 10:
             self.__name = name[:10]
         else:
@@ -58,7 +62,7 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, csv_file):
-        """добовление экземпляров класса из csv файла"""
+        """Добовление экземпляров класса из csv файла"""
         cls.all = []
         with open(csv_file, newline='', encoding="windows-1251") as file:
             data = csv.DictReader(file)
@@ -67,7 +71,7 @@ class Item:
 
     @staticmethod
     def string_to_number(str_number):
-        """возвращает число из числа - строки"""
+        """Возвращает число из числа - строки"""
         number = float(str_number)
         return int(number)
 
