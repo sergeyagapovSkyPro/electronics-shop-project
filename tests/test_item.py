@@ -1,12 +1,18 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
+from src.phone import Phone
 from config import ITEMS
 
 
 @pytest.fixture
 def item():
     return Item("Смартфон", 10000, 20)
+
+
+@pytest.fixture()
+def phone():
+    return Phone("iPhone 14", 120_000, 5, 2)
 
 
 def test_item(item):
@@ -32,18 +38,27 @@ def test_name():
     item1.name = "Духовой шкаф"
     assert item1.name == "Духовой шк"
 
+
 def test_instantiate_from_csv():
     """Проверка добавления экземпляров класса из CSV файла"""
     Item.instantiate_from_csv(ITEMS)
     assert len(Item.all) == 5
+
 
 def test_string_to_number():
     """Проверка возвращения числа из строки-числа"""
     assert Item.string_to_number("5") == 5
     assert Item.string_to_number("1.5") == 1
 
+
 def test_repr_str():
     """Проверка repr, str"""
     item1 = Item("Смартфон", 10000, 20)
     assert repr(item1) == "Item('Смартфон', 10000, 20)"
     assert str(item1) == 'Смартфон'
+
+
+def test_add(item, phone):
+    """Проверка складывания кол-во товаров"""
+    assert phone + item == 25
+    assert phone + phone == 10
