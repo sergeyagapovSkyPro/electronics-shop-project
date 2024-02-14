@@ -16,4 +16,6 @@ class Mixin:
 
 
 class Keyboard(Item, Mixin):
-    pass
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
+        Mixin.__init__(self)
